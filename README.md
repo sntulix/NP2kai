@@ -784,6 +784,13 @@ lr-np2kai="/opt/retropie/emulators/retroarch/bin/retroarch -L /opt/retropie/libr
 ## Informaion
 
 <details><summary>
+Font (SDL)
+</summary><div>
+
+To use FONT.ROM, place at /Users/$USER/.config/sdlnp21kai/ (macOS).<br>
+</div></details>
+
+<details><summary>
 Key-repeat (libretro and SDL)
 </summary><div>
 
