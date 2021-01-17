@@ -784,6 +784,7 @@ lr-np2kai="/opt/retropie/emulators/retroarch/bin/retroarch -L /opt/retropie/libr
 ## Informaion
 
 <details><summary>
+<<<<<<< HEAD
 Configulation
 </summary><div>
 Place at /Users/$USER/.config/sdlnp21kai/np21kai.cfg (macOS).<br>
@@ -817,6 +818,8 @@ keyrepeat_interval = 50
 </div></details>
 
 <details><summary>
+=======
+>>>>>>> a95f5d9... Update README.md: added Information - Font (SDL)
 Font (SDL)
 </summary><div>
 
