@@ -784,6 +784,39 @@ lr-np2kai="/opt/retropie/emulators/retroarch/bin/retroarch -L /opt/retropie/libr
 ## Informaion
 
 <details><summary>
+Configulation
+</summary><div>
+Place at /Users/$USER/.config/sdlnp21kai/np21kai.cfg (macOS).<br>
+
+Sample (This is partly yet.)
+
+```
+[NekoProject21kai]
+FDfolder = 
+HDfolder = 
+bmap_Dir = 
+bmap_Num = 0
+fontfile = 
+use_hdrv = true
+hdrvroot = 
+hdrv_acc = 0
+pc_model = VX
+clk_base = 2457600
+clk_mult = 20
+DIPswtch = 3e e3 7b 
+MEMswtch = 48 05 04 08 01 20 00 6e 
+ExMemory = 13
+HDD1FILE = .config/np2kai/FD98_HD_250M.hdi
+HDD2FILE = 
+
+keyrepeat_enable = false
+keyrepeat_delay = 500
+keyrepeat_interval = 50
+```
+
+</div></details>
+
+<details><summary>
 Font (SDL)
 </summary><div>
 
