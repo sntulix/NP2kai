@@ -272,7 +272,8 @@ static void processwait(UINT cnt) {
 			}
 		}
 #endif
-//		taskmng_sleep(1); /* shizuki */
+//		taskmng_sleep(1); /* sntulix */
+//		emscripten_sleep(1);
 	}
 }
 
@@ -841,7 +842,8 @@ if (taskmng_isavail()) {
 		taskmng_rol();
 #if defined(EMSCRIPTEN) && !defined(__LIBRETRO__)
 //		emscripten_sleep_with_yield(0);
-//		emscripten_sleep(16); /* shizuki */
+//		emscripten_sleep(16); /* sntulix */
+		emscripten_sleep(1); /* sntulix */
 #endif
 		if (np2oscfg.NOWAIT) {
 			joymng_sync();
