@@ -49,6 +49,8 @@
 #endif
 #include	<np2_tickcount.h>
 
+#include <time.h>
+
 static const char appname[] =
 #if defined(CPUCORE_IA32)
     "sdlnp21kai"
@@ -270,7 +272,7 @@ static void processwait(UINT cnt) {
 			}
 		}
 #endif
-		taskmng_sleep(1);
+//		taskmng_sleep(1); /* shizuki */
 	}
 }
 
@@ -700,8 +702,16 @@ np2main_err1:
 
 int np2_end(){
 #else	/* __LIBRETRO__ */
-	np2exec();
+  time_t t;
+  struct tm tm;
 
+  time(&t);
+  localtime_r(&t, &tm);
+  puts("set emscripten_set_main_loop");
+  printf("np2exec %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+  emscripten_set_main_loop(np2exec, 0, 1);
+//	np2exec();
+	
 #endif	/* __LIBRETRO__ */
 
 	pccore_cfgupdate();
@@ -806,7 +816,19 @@ havemmx(void)
 
 static void np2exec()
 {
-	while(taskmng_isavail()) {
+  time_t t;
+  struct tm tm;
+
+//    time(&t);
+//    localtime_r(&t, &tm);
+//    printf("np2exec %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+//	while(taskmng_isavail()) {
+if (taskmng_isavail()) {
+
+    time(&t);
+    localtime_r(&t, &tm);
+    printf("np2exec while %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+
 #if !defined(__LIBRETRO__)
 		if(g_u8ControlState == 1) {
 			statsave_save_d();
@@ -819,7 +841,7 @@ static void np2exec()
 		taskmng_rol();
 #if defined(EMSCRIPTEN) && !defined(__LIBRETRO__)
 //		emscripten_sleep_with_yield(0);
-		emscripten_sleep(0);
+//		emscripten_sleep(16); /* shizuki */
 #endif
 		if (np2oscfg.NOWAIT) {
 			joymng_sync();

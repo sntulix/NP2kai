@@ -5,6 +5,7 @@
 #include	"commng.h"
 #include	<pccore.h>
 #include	"np2.h"
+#include <time.h>
 
 #if defined(SUPPORT_WAB)
 #include <wab/wab.h>
@@ -542,6 +543,13 @@ void scrnmng_menudraw(const RECT_T *rct) {
 void
 scrnmng_update(void)
 {
+/* sntulix */
+  time_t t;
+  struct tm tm;
+  time(&t);
+  localtime_r(&t, &tm);
+  printf("scrnmng_update %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+
 	if(!scrnmng.enable) return;
 
 #if defined(__LIBRETRO__)
