@@ -286,12 +286,7 @@ BOOL taskmng_sleep(UINT32 tick) {
 	base = GETTICK();
 	while((task_avail) && ((GETTICK() - base) < tick)) {
 		taskmng_rol();
-#if defined(EMSCRIPTEN) && !defined(__LIBRETRO__)
-//		emscripten_sleep_with_yield(1);
-		emscripten_sleep(1);
-#else
 		NP2_Sleep_ms(1);
-#endif
 	}
 	return(task_avail);
 }

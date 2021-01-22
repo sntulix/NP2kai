@@ -272,11 +272,7 @@ static void processwait(UINT cnt) {
 			}
 		}
 #endif
-#if defined(EMSCRIPTEN) && !defined(__LIBRETRO__) /* sntulix */
-		emscripten_sleep(1);
-#else
 		taskmng_sleep(1); 
-#endif
 	}
 }
 
@@ -707,9 +703,10 @@ np2main_err1:
 int np2_end(){
 #else	/* __LIBRETRO__ */
 /* sntulix */
-  puts("set emscripten_set_main_loop");
+  fprintf(stderr, "set emscripten_set_main_loop");
   print_time("np2exec");
   emscripten_set_main_loop(np2exec, 0, 1);
+  emscripten_set_main_loop_timing(EM_TIMING_RAF, 1);
 //	np2exec();
 	
 #endif	/* __LIBRETRO__ */
@@ -830,10 +827,7 @@ print_time("np2exec while");
 #endif
 
 		taskmng_rol();
-#if defined(EMSCRIPTEN) && !defined(__LIBRETRO__)
-//		emscripten_sleep_with_yield(0);
-		emscripten_sleep(17); /* sntulix, sleep 16.777ms (1fps) for 60fps) */
-#endif
+
 		if (np2oscfg.NOWAIT) {
 			joymng_sync();
 			pccore_exec(framecnt == 0);
