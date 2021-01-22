@@ -5,7 +5,7 @@
 #include	"commng.h"
 #include	<pccore.h>
 #include	"np2.h"
-#include <time.h>
+#include	"util.h"
 
 #if defined(SUPPORT_WAB)
 #include <wab/wab.h>
@@ -544,11 +544,7 @@ void
 scrnmng_update(void)
 {
 /* sntulix */
-  time_t t;
-  struct tm tm;
-  time(&t);
-  localtime_r(&t, &tm);
-  printf("scrnmng_update %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+print_time("scrnmng_update");
 
 	if(!scrnmng.enable) return;
 
