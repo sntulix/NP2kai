@@ -730,7 +730,25 @@ if(CMAKE_CROSSCOMPILING)
 		target_compile_definitions(NP2kai_Emscripten_SDL2_base INTERFACE ${NP2kai_SDL_definitions} "OSLINEBREAK_LF" "SUPPORT_SDL_AUDIO" ${lib_SDL_mixer_definitions} ${lib_SDL_ttf_definitions} "SUPPORT_NP2_TICKCOUNT")
 		target_include_directories(NP2kai_Emscripten_SDL2_base INTERFACE ${NP2kai_Emscripten_include_dirs})
 		target_compile_options(NP2kai_Emscripten_SDL2_base INTERFACE "SHELL:-s USE_SDL=2" "SHELL:-s USE_SDL_MIXER=2" "SHELL:-s USE_SDL_TTF=2")
-		target_link_options(NP2kai_Emscripten_SDL2_base INTERFACE "SHELL:-s INITIAL_MEMORY=${NP2kai_Emscripten_MinMemorySize}" "SHELL:-s MAXIMUM_MEMORY=${NP2kai_Emscripten_MaxMemorySize}" "SHELL:-s USE_SDL=2" "SHELL:-s USE_SDL_MIXER=2" "SHELL:-s USE_SDL_TTF=2" "SHELL:-O3 --js-opts 1 -flto -g2 --profiling-funcs -s WASM=1 -s ASSERTIONS=0 -s SAFE_HEAP=0 -s STACK_OVERFLOW_CHECK=0 -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s ASYNCIFY=1 -s EMULATE_FUNCTION_POINTER_CASTS -s ALLOW_MEMORY_GROWTH=0 -s FORCE_FILESYSTEM=1 --preload-file np21kai.cfg --preload-file Floppy-FreeDOS-SE3-LHA.D88")
+		target_link_options(NP2kai_Emscripten_SDL2_base INTERFACE "SHELL:-s INITIAL_MEMORY=${NP2kai_Emscripten_MinMemorySize}" "SHELL:-s MAXIMUM_MEMORY=${NP2kai_Emscripten_MaxMemorySize}" "SHELL:-s USE_SDL=2" "SHELL:-s USE_SDL_MIXER=2" "SHELL:-s USE_SDL_TTF=2"
+"SHELL: \
+-O3 \
+--js-opts 1 \
+-flto \
+-g2 \
+--profiling-funcs \
+-s WASM=1 \
+-s ASSERTIONS=0 \
+-s SAFE_HEAP=0 \
+-s STACK_OVERFLOW_CHECK=0 \
+-s ERROR_ON_UNDEFINED_SYMBOLS=0 \
+-s ASYNCIFY=1 \
+-s \"ASYNCIFY_IMPORTS=['np2exec']\" \
+-s EMULATE_FUNCTION_POINTER_CASTS \
+-s ALLOW_MEMORY_GROWTH=0 \
+-s FORCE_FILESYSTEM=1 \
+--preload-file np21kai.cfg \
+--preload-file Floppy-FreeDOS-SE3-LHA.D88")
 		target_link_libraries(NP2kai_Emscripten_SDL2_base INTERFACE m ssl crypto)
 		target_sources(NP2kai_Emscripten_SDL2_base INTERFACE ${NP2kai_SDL_sources}  "sdl/em/main.c")
 	endif()
